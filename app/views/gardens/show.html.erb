@@ -1,0 +1,26 @@
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @garden.banner %>');">
+  <div class="container">
+    <h1><%= @garden.name %></h1>
+    <%= link_to 'add a plant', new_garden_plant_path(@garden), class: 'btn btn-primary'  %>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <% @garden.plants.each do |plant| %>
+    <div class="col-4">
+      <%= image_tag plant.image, width: 200, height: 300 %>
+      <div class="d-flex p-3">
+          <p><%= plant.name.capitalize %></p>
+          <br>
+          <p><%= plant.price %>euros</p>
+
+        <%= link_to 'destroy', plant_path(plant), method: :delete, data: {confirm: 'are you sure ?'}, class: 'btn btn-warning' %>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+</div>
+
